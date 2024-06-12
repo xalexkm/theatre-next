@@ -4,6 +4,7 @@ import Card from "./card";
 
 const MoviesListWrapper = styled.section`
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-md);
   background-color: var(--primary-color);
   border-radius: var(--border-radius-md);
