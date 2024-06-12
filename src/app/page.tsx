@@ -1,19 +1,30 @@
 import MoviesList from "../components/movies-list";
 
 async function getData() {
-    const res = await fetch('https://www.omdbapi.com/?i=tt3896198&apikey=f1d12aef')
+    const res = await fetch(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=Fragrance&type=movie`)
 
     if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
     }
 
-    return res.json()
+    const { Search } = await res.json();
+
+    const sanitisiedData = Search.map((movie) => ({
+        title: movie.Title,
+        year: movie.Year,
+        id: movie.imdbID,
+        type: movie.Type,
+        poster: movie.Poster
+    }));
+
+    return sanitisiedData
 }
 
-export default function Page() {
+export default async function Page() {
 
-    const moviesData = getData()
+    const moviesData = await getData()
+
+    console.log(moviesData);
 
     return <MoviesList moviesData={moviesData} />
 }

@@ -31,10 +31,10 @@ const imageStyle = {
     objectFit: "cover"
 };
 
-export default function Card({ title, releaseDate}) {
+export default function Card({ title, releaseDate, posterSrc}) {
     return <CardWrapper>
         <CardPoster>
-            <Image priority style={imageStyle} height={300} width={100} src={`https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg`} alt={`Alt`} />
+            <Image priority style={imageStyle} height={300} width={100} src={posterSrc} alt={`Alt`} />
         </CardPoster>
         <CardDetails>
             <h2>{ title }</h2>

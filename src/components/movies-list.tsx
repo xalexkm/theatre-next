@@ -12,9 +12,7 @@ const MoviesListWrapper = styled.section`
 
 export default function MoviesList({ moviesData }) {
 
-    const movies = [{title: 'Title', released: '12/12/23'}, {title: 'Title', released: '12/12/23'}];
-
     return <MoviesListWrapper>
-        { movies.map((movie) => <Card title={movie.title} releaseDate={movie.released} />)}
+        { moviesData.map((movie) => <Card key={movie.id} title={movie.title} releaseDate={movie.year} posterSrc={movie.poster} />)}
     </MoviesListWrapper>
 }
