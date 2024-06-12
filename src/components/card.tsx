@@ -5,7 +5,7 @@ import Image from "next/image";
 const CardWrapper = styled.article`
         width: 200px;
         overflow: hidden;
-        background-color: var(--primary-color);
+        background-color: var(--secondary-color);
         border-radius: var(--border-radius-md);
         box-shadow: var(--box-shadow-md);
 `;
@@ -31,14 +31,14 @@ const imageStyle = {
     objectFit: "cover"
 };
 
-export default function Card() {
+export default function Card({ title, releaseDate}) {
     return <CardWrapper>
         <CardPoster>
             <Image priority style={imageStyle} height={300} width={100} src={`https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg`} alt={`Alt`} />
         </CardPoster>
         <CardDetails>
-            <h2>Title</h2>
-            <ReleaseDate>Release Date: 12/02/11</ReleaseDate>
+            <h2>{ title }</h2>
+            <ReleaseDate>Release Date: { releaseDate }</ReleaseDate>
         </CardDetails>
     </CardWrapper>
 }

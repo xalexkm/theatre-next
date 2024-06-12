@@ -7,6 +7,12 @@ module.exports = {
                 port: '',
                 pathname: '/images/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'omdbapi.com',
+                port: '',
+                pathname: '/**',
+            },
         ],
     },
     compiler: {
