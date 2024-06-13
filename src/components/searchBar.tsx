@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import MoviesList from "./moviesList";
 import { searchMoviesByTitle } from "../lib/api";
-import useThrottle from "../app/hooks/useThrottle";
+import useThrottle from "../hooks/useThrottle";
 import { device } from "../styles/breakpoints";
 
 const SearchBarInput = styled.input`
