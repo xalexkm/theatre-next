@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import styled from "styled-components";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import MoviesList from "./moviesList";
-import {searchMoviesByTitle} from "../lib/api";
+import { searchMoviesByTitle } from "../lib/api";
 import useThrottle from "../app/hooks/useThrottle";
-import {device} from "../styles/breakpoints";
+import { device } from "../styles/breakpoints";
 
 const SearchBarInput = styled.input`
   display: block;
@@ -33,27 +33,32 @@ const SearchBarTitle = styled.h2`
 `;
 
 export default function SearchBar() {
-    const [input, setInput] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+  const [input, setInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-    const throttledInput = useThrottle(input, 1000);
+  const throttledInput = useThrottle(input, 1000);
 
-    useEffect(() => {
-        if (throttledInput.trim() !== '') {
-            searchMoviesByTitle(throttledInput).then((res) => setSearchResults(res));
-        } else {
-            setSearchResults([]);
-        }
-    }, [throttledInput]);
+  useEffect(() => {
+    if (throttledInput.trim() !== "") {
+      searchMoviesByTitle(throttledInput).then((res) => setSearchResults(res));
+    } else {
+      setSearchResults([]);
+    }
+  }, [throttledInput]);
 
-    return <SearchBarWrapper>
-        <SearchBarInput placeholder="Search for a movie..." value={input} onChange={(e) => setInput(e.target.value)}>
-        </SearchBarInput>
-        {
-            (searchResults && searchResults.length > 0) && <>
-                <SearchBarTitle>Searched Movies</SearchBarTitle>
-                <MoviesList moviesData={searchResults} />
-            </>
-        }
+  return (
+    <SearchBarWrapper>
+      <SearchBarInput
+        placeholder="Search for a movie..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      ></SearchBarInput>
+      {searchResults && searchResults.length > 0 && (
+        <>
+          <SearchBarTitle>Searched Movies</SearchBarTitle>
+          <MoviesList moviesData={searchResults} />
+        </>
+      )}
     </SearchBarWrapper>
+  );
 }

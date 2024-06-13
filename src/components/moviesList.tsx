@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import styled from "styled-components";
 import Card from "./card";
 import { device } from "../styles/breakpoints";
@@ -19,19 +19,19 @@ const MoviesListWrapper = styled.section`
 `;
 
 const MoviesList = ({ moviesData }) => {
-    return (
-        <MoviesListWrapper>
-            {moviesData.map(movie => (
-                <Card
-                    key={movie.id}
-                    title={movie.title}
-                    releaseDate={movie.year}
-                    posterSrc={movie.posterSrc}
-                    moviePath={movie.moviePath}
-                />
-            ))}
-        </MoviesListWrapper>
-    );
+  return (
+    <MoviesListWrapper>
+      {moviesData.map((movie) => (
+        <Card
+          key={movie.id}
+          title={movie.title}
+          releaseDate={movie.year}
+          posterSrc={movie.posterSrc}
+          moviePath={movie.moviePath}
+        />
+      ))}
+    </MoviesListWrapper>
+  );
 };
 
 export default memo(MoviesList);
