@@ -68,7 +68,7 @@ const Card = ({ title, releaseDate, posterSrc, moviePath }: CardProps) => (
         <CardPoster>
           <Image
             priority
-            style={{ objectFit: 'cover', objectPosition: 'center'}}
+            style={{ objectFit: "cover", objectPosition: "center" }}
             height={300}
             width={200}
             src={posterSrc}

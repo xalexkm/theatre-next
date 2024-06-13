@@ -43,7 +43,7 @@ const MovieDetails = ({ movieDetails }) => (
     <MovieDetailsPoster>
       <Image
         priority
-        style={{ objectFit: 'cover', objectPosition: 'center'}}
+        style={{ objectFit: "cover", objectPosition: "center" }}
         height={500}
         width={350}
         src={movieDetails.posterSrc}
