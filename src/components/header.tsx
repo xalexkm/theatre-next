@@ -1,5 +1,6 @@
 "use client"
 import styled from "styled-components";
+import Link from "next/link";
 
 const HeaderWrapper = styled.header`
     height: 80px;
@@ -9,12 +10,19 @@ const HeaderWrapper = styled.header`
     justify-content: center;
     align-items: center;
     margin: 0 0 var(--spacing-md) 0;
-    span {
+    a {
+      color: var(--text-color);
+      :hover {
+        color: var(--text-color);
+      }
+    }
+    a > span {
+      display: block;
       width: 1000px;
       font-size: var(--font-size-lg);
     }
 `;
 
 export default function Header() {
-    return <HeaderWrapper><span>Theatre App</span></HeaderWrapper>
+    return <HeaderWrapper><Link href={'/'}><span>Theatre App</span></Link></HeaderWrapper>
 }
