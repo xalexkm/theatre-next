@@ -1,8 +1,8 @@
 "use client"
 import styled from "styled-components";
 import {useEffect, useState} from "react";
-import {searchMoviesByTitle} from "../app/page";
 import MoviesList from "./moviesList";
+import {searchMoviesByTitle} from "../lib/api";
 
 const SearchBarInput = styled.input`
   display: block;
