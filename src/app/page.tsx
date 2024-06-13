@@ -6,5 +6,8 @@ export default async function Page() {
 
     const moviesData = await searchMoviesByTitle('Fragrance');
 
-    return <><SearchBar></SearchBar><MoviesList moviesData={moviesData} /></>
+    return <>
+        <SearchBar></SearchBar>
+        <MoviesList moviesData={moviesData} />
+    </>
 }
