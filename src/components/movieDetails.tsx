@@ -2,6 +2,7 @@
 import styled, {CSSProperties} from "styled-components";
 import Image from "next/image";
 import {memo} from "react";
+import {device} from "../styles/breakpoints";
 
 
 const MovieDetailsWrapper = styled.section`
@@ -12,6 +13,9 @@ const MovieDetailsWrapper = styled.section`
   padding: var(--spacing-md);
   border-radius: var(--border-radius-md);
   background-color: var(--secondary-color);
+  @media ${device.md} {
+    flex-direction: column;
+  }
 `;
 
 const imageStyle = {
@@ -36,8 +40,14 @@ const MovieDetailsDescriptionListItem = styled.li`
     padding: var(--spacing-sm) 0;
 `;
 
+const MovieDetailsPoster = styled.div`
+    align-self: center;
+`;
+
 const MovieDetails = ({ movieDetails }) => <MovieDetailsWrapper>
-    <Image priority style={imageStyle} height={500} width={350} src={movieDetails.posterSrc} alt={`${movieDetails.title} poster`} />
+    <MovieDetailsPoster>
+        <Image priority style={imageStyle} height={500} width={350} src={movieDetails.posterSrc} alt={`${movieDetails.title} poster`} />
+    </MovieDetailsPoster>
     <MovieDetailsDescription>
         <MovieDetailsTitle>{movieDetails.title}</MovieDetailsTitle>
         <MovieDetailsDescriptionList>
