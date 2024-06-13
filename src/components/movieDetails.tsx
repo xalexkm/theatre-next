@@ -17,13 +17,6 @@ const MovieDetailsWrapper = styled.section`
   }
 `;
 
-const imageStyle = {
-  height: "500px",
-  width: "350px",
-  objectPosition: "center",
-  objectFit: "cover",
-} as CSSProperties;
-
 const MovieDetailsDescription = styled.section`
   height: 100%;
 `;
@@ -50,7 +43,7 @@ const MovieDetails = ({ movieDetails }) => (
     <MovieDetailsPoster>
       <Image
         priority
-        style={imageStyle}
+        style={{ objectFit: 'cover', objectPosition: 'center'}}
         height={500}
         width={350}
         src={movieDetails.posterSrc}

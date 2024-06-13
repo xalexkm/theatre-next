@@ -45,13 +45,6 @@ const CardDetails = styled.div`
   flex-grow: 1;
 `;
 
-const imageStyle = {
-  width: "200px",
-  height: "300px",
-  objectPosition: "center",
-  objectFit: "cover",
-} as CSSProperties;
-
 const CardTitle = styled.h2`
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,9 +68,9 @@ const Card = ({ title, releaseDate, posterSrc, moviePath }: CardProps) => (
         <CardPoster>
           <Image
             priority
-            style={imageStyle}
+            style={{ objectFit: 'cover', objectPosition: 'center'}}
             height={300}
-            width={100}
+            width={200}
             src={posterSrc}
             alt={`${title} poster`}
           />
