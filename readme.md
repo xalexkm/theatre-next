@@ -2,7 +2,7 @@
 
 # Theatre App
 
-A small and simple app that allows you search for a movie within the oMDB dataset and get the details about the movie on a separate page.
+A small and simple app that allows you search for a movie within the OMDb dataset and get the details about the movie on a separate page.
 
 ## Table of Contents
 
@@ -37,8 +37,7 @@ Follow these steps to set up your Next.js 14 application from scratch.
 
     Create a `.env.local` file in the root directory and add your environment variables. An example:
 
-    `NEXT_PUBLIC_API_URL=https://api.example.com
-    NEXT_PUBLIC_API_KEY=yourapikey`
+    `NEXT_PUBLIC_API_KEY=yourapikey` (I have committed my key for ease of use)
 
 
 ## Running the Application

@@ -13,7 +13,7 @@ type MovieDetails = {
 
 export async function fetchMovieData(movieId: string): Promise<MovieDetails> {
     try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=f1d12aef&i=${movieId}`);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&i=${movieId}`);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
@@ -52,7 +52,7 @@ interface Movie {
 
 export async function searchMoviesByTitle(title: string): Promise<Movie[]> {
     try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=f1d12aef&s=${title}&type=movie`);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_API_KEY}&s=${title}&type=movie`);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
