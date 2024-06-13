@@ -21,6 +21,10 @@ const SearchBarWrapper = styled.div`
   margin: var(--spacing-md) 0;
 `;
 
+const SearchBarTitle = styled.h2`
+  margin: var(--spacing-md) 0 var(--spacing-md) var(--spacing-lg);
+`;
+
 export default function SearchBar() {
     const [input, setInput] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -32,6 +36,11 @@ export default function SearchBar() {
     return <SearchBarWrapper>
         <SearchBarInput placeholder="Search for a movie..." value={input} onChange={(e) => setInput(e.target.value)}>
         </SearchBarInput>
-        <MoviesList moviesData={searchResults} />
+        {
+            (searchResults && searchResults.length > 0) && <>
+                <SearchBarTitle>Searched Movies</SearchBarTitle>
+                <MoviesList moviesData={searchResults} />
+            </>
+        }
     </SearchBarWrapper>
 }

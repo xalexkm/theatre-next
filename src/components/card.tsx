@@ -22,6 +22,14 @@ const CardPoster = styled.div`
         width: 200px;
 `;
 
+const CardPosterPlaceholder = styled.div`
+  height: 300px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ReleaseDate = styled.span`
         color: var(--text-color);
 `;
@@ -49,9 +57,9 @@ const CardTitle = styled.h2`
 export default function Card({ title, releaseDate, posterSrc, moviePath}) {
     return <Link href={moviePath}>
         <CardWrapper>
-            <CardPoster>
+            { posterSrc ? <CardPoster>
                 <Image priority style={imageStyle} height={300} width={100} src={posterSrc} alt={`${title} poster`} />
-            </CardPoster>
+            </CardPoster> : <CardPosterPlaceholder><span>No Image Available</span></CardPosterPlaceholder>}
             <CardDetails>
                 <CardTitle>{ title }</CardTitle>
                 <ReleaseDate>Release Date: { releaseDate }</ReleaseDate>
