@@ -26,7 +26,7 @@ const MoviesList = ({ moviesData }) => {
                     key={movie.id}
                     title={movie.title}
                     releaseDate={movie.year}
-                    posterSrc={movie.poster}
+                    posterSrc={movie.posterSrc}
                     moviePath={movie.moviePath}
                 />
             ))}

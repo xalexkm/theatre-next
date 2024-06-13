@@ -1,4 +1,4 @@
-type MovieData = {
+type MovieDetails = {
     title: string;
     year: string;
     id: string;
@@ -11,9 +11,9 @@ type MovieData = {
     actors: string;
 };
 
-export async function fetchMovieData(movieId: string): Promise<MovieData> {
+export async function fetchMovieData(movieId: string): Promise<MovieDetails> {
     try {
-        const response = await fetch(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${movieId}`);
+        const response = await fetch(`https://www.omdbapi.com/?apikey=f1d12aef&i=${movieId}`);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
@@ -21,7 +21,7 @@ export async function fetchMovieData(movieId: string): Promise<MovieData> {
 
         const data = await response.json();
 
-        const sanitizedData: MovieData = {
+        const sanitizedData: MovieDetails = {
             title: data.Title,
             year: data.Year,
             id: data.imdbID,
@@ -41,29 +41,41 @@ export async function fetchMovieData(movieId: string): Promise<MovieData> {
     }
 }
 
-export async function searchMoviesByTitle(title) {
-    const res = await fetch(`https://www.omdbapi.com/?apikey=f1d12aef&s=${title}&type=movie`)
+interface Movie {
+    title: string;
+    year: string;
+    id: string;
+    type: string;
+    posterSrc?: string;
+    moviePath: string;
+}
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
+export async function searchMoviesByTitle(title: string): Promise<Movie[]> {
+    try {
+        const response = await fetch(`https://www.omdbapi.com/?apikey=f1d12aef&s=${title}&type=movie`);
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.Search) {
+            return [];
+        }
+
+        const sanitizedData: Movie[] = data.Search.map((movie: any) => ({
+            title: movie.Title,
+            year: movie.Year,
+            id: movie.imdbID,
+            type: movie.Type,
+            posterSrc: movie.Poster.startsWith('https') ? movie.Poster : undefined,
+            moviePath: `/movies/${movie.imdbID}`,
+        }));
+
+        return sanitizedData;
+    } catch (error) {
+        console.error('Error searching movies:', error);
+        throw new Error('An error occurred while searching for movies');
     }
-
-    const body = await res.json();
-
-    if (!Object.hasOwn(body, 'Search')) {
-        return []
-    }
-
-    const { Search } = body;
-
-    const sanitisiedData = Search.map((movie) => ({
-        title: movie.Title,
-        year: movie.Year,
-        id: movie.imdbID,
-        type: movie.Type,
-        poster: movie.Poster.includes('https') ? movie.Poster : undefined,
-        moviePath: `/movies/${movie.imdbID}`
-    }));
-
-    return sanitisiedData
 }
