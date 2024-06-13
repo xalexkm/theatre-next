@@ -46,8 +46,8 @@ const CardDetails = styled.div`
 `;
 
 const imageStyle = {
-  width: "100%",
-  height: "100%",
+  width: "200px",
+  height: "300px",
   objectPosition: "center",
   objectFit: "cover",
 } as CSSProperties;

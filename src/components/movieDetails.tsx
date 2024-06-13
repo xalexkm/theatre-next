@@ -18,6 +18,8 @@ const MovieDetailsWrapper = styled.section`
 `;
 
 const imageStyle = {
+  height: "500px",
+  width: "350px",
   objectPosition: "center",
   objectFit: "cover",
 } as CSSProperties;
