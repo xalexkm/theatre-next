@@ -3,7 +3,6 @@ import SearchBar from "../components/searchBar";
 import {searchMoviesByTitle} from "../lib/api";
 
 export default async function Page() {
-
     const moviesData = await searchMoviesByTitle('Fragrance');
 
     return <>
