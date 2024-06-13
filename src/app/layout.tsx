@@ -1,6 +1,7 @@
 import "../styles/global.css";
 import type { Metadata } from 'next'
 import StyledComponentsRegistry from "../lib/registry";
+import Header from "../components/header";
 
 export const metadata: Metadata = {
     title: 'Theatre App',
@@ -13,7 +14,10 @@ export default function RootLayout({children}: {
     return (
         <html lang="en">
             <body>
-                <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+                <StyledComponentsRegistry>
+                    <Header></Header>
+                    {children}
+                </StyledComponentsRegistry>
             </body>
         </html>
     )
