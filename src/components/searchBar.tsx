@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {useEffect, useState} from "react";
 import MoviesList from "./moviesList";
 import {searchMoviesByTitle} from "../lib/api";
+import useThrottle from "../app/hooks/useThrottle";
 
 const SearchBarInput = styled.input`
   display: block;
@@ -29,9 +30,15 @@ export default function SearchBar() {
     const [input, setInput] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
+    const throttledInput = useThrottle(input, 1000);
+
     useEffect(() => {
-        searchMoviesByTitle(input).then((res) => setSearchResults(res))
-    }, [input]);
+        if (throttledInput.trim() !== '') {
+            searchMoviesByTitle(throttledInput).then((res) => setSearchResults(res));
+        } else {
+            setSearchResults([]);
+        }
+    }, [throttledInput]);
 
     return <SearchBarWrapper>
         <SearchBarInput placeholder="Search for a movie..." value={input} onChange={(e) => setInput(e.target.value)}>
