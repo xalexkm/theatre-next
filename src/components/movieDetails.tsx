@@ -1,6 +1,7 @@
 "use client"
 import styled from "styled-components";
 import Image from "next/image";
+import {memo} from "react";
 
 
 const MovieDetailsWrapper = styled.section`
@@ -36,19 +37,18 @@ const MovieDetailsDescriptionListItem = styled.li`
     padding: var(--spacing-sm) 0;
 `;
 
+const MovieDetails = ({ movieDetails }) => <MovieDetailsWrapper>
+    <Image priority style={imageStyle} height={500} width={200} src={movieDetails.posterSrc} alt={`${movieDetails.title} poster`} />
+    <MovieDetailsDescription>
+        <MovieDetailsTitle>{movieDetails.title}</MovieDetailsTitle>
+        <MovieDetailsDescriptionList>
+            <MovieDetailsDescriptionListItem>Genre: { movieDetails.genre }</MovieDetailsDescriptionListItem>
+            <MovieDetailsDescriptionListItem>Language: { movieDetails.language }</MovieDetailsDescriptionListItem>
+            <MovieDetailsDescriptionListItem>Actors: { movieDetails.actors }</MovieDetailsDescriptionListItem>
+            <MovieDetailsDescriptionListItem>Rated: { movieDetails.rated }</MovieDetailsDescriptionListItem>
+        </MovieDetailsDescriptionList>
+    </MovieDetailsDescription>
+</MovieDetailsWrapper>
 
-export default function MovieDetails({ movieDetails }) {
 
-    return <MovieDetailsWrapper>
-        <Image priority style={imageStyle} height={500} width={200} src={movieDetails.posterSrc} alt={`${movieDetails.title} poster`} />
-        <MovieDetailsDescription>
-            <MovieDetailsTitle>{movieDetails.title}</MovieDetailsTitle>
-            <MovieDetailsDescriptionList>
-                <MovieDetailsDescriptionListItem>Genre: { movieDetails.genre }</MovieDetailsDescriptionListItem>
-                <MovieDetailsDescriptionListItem>Language: { movieDetails.language }</MovieDetailsDescriptionListItem>
-                <MovieDetailsDescriptionListItem>Actors: { movieDetails.actors }</MovieDetailsDescriptionListItem>
-                <MovieDetailsDescriptionListItem>Rated: { movieDetails.rated }</MovieDetailsDescriptionListItem>
-            </MovieDetailsDescriptionList>
-        </MovieDetailsDescription>
-    </MovieDetailsWrapper>
-}
+export default memo(MovieDetails);

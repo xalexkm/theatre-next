@@ -1,39 +1,53 @@
 import MovieDetails from "../../../components/movieDetails";
 
 
-async function getData(movieId: string) {
-    const res = await fetch(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${movieId}`);
+type MovieData = {
+    title: string;
+    year: string;
+    id: string;
+    type: string;
+    posterSrc: string;
+    rated: string;
+    timeLength: string;
+    genre: string;
+    language: string;
+    actors: string;
+};
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data');
+async function fetchMovieData(movieId: string): Promise<MovieData> {
+    try {
+        const response = await fetch(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${movieId}`);
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        const sanitizedData: MovieData = {
+            title: data.Title,
+            year: data.Year,
+            id: data.imdbID,
+            type: data.Type,
+            posterSrc: data.Poster,
+            rated: data.Rated,
+            timeLength: data.Runtime,
+            genre: data.Genre,
+            language: data.Language,
+            actors: data.Actors,
+        };
+
+        return sanitizedData;
+    } catch (error) {
+        console.error('Error fetching movie data:', error);
+        throw new Error('An error occurred while fetching movie data');
     }
-
-    const rawData = await res.json();
-
-    console.log(rawData);
-
-    const sanitisiedData = {
-        title: rawData.Title,
-        year: rawData.Year,
-        id: rawData.imdbID,
-        type: rawData.Type,
-        posterSrc: rawData.Poster,
-        rated: rawData.Rated,
-        timeLength: rawData.Runtime,
-        genre: rawData.Genre,
-        language: rawData.Language,
-        actors: rawData.Actors,
-    };
-
-    return sanitisiedData
 }
 
 export default async function Page({ params }) {
     const { movie } = params;
 
-    const movieDetails = await getData(movie);
-
-    console.log(movieDetails);
+    const movieDetails = await fetchMovieData(movie);
 
     return <MovieDetails movieDetails={movieDetails}></MovieDetails>
 }

@@ -2,12 +2,15 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import {memo} from "react";
 
 const CardWrapper = styled.article`
         position: relative;
         width: 200px;
         height: 450px;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
         background-color: var(--secondary-color);
         border-radius: var(--border-radius-md);
         box-shadow: var(--box-shadow-md);
@@ -36,6 +39,10 @@ const ReleaseDate = styled.span`
 
 const CardDetails = styled.div`
         padding: var(--spacing-md);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
 `;
 
 const imageStyle = {
@@ -54,16 +61,23 @@ const CardTitle = styled.h2`
   -webkit-box-orient: vertical;
 `;
 
-export default function Card({ title, releaseDate, posterSrc, moviePath}) {
-    return <Link href={moviePath}>
-        <CardWrapper>
-            { posterSrc ? <CardPoster>
-                <Image priority style={imageStyle} height={300} width={100} src={posterSrc} alt={`${title} poster`} />
-            </CardPoster> : <CardPosterPlaceholder><span>No Image Available</span></CardPosterPlaceholder>}
-            <CardDetails>
-                <CardTitle>{ title }</CardTitle>
-                <ReleaseDate>Release Date: { releaseDate }</ReleaseDate>
-            </CardDetails>
-        </CardWrapper>
-    </Link>
+interface CardProps {
+    title: string;
+    releaseDate: string;
+    posterSrc?: string;
+    moviePath: string;
 }
+
+const Card = ({ title, releaseDate, posterSrc, moviePath}: CardProps) => <Link href={moviePath}>
+    <CardWrapper>
+        { posterSrc ? <CardPoster>
+            <Image priority style={imageStyle} height={300} width={100} src={posterSrc} alt={`${title} poster`} />
+        </CardPoster> : <CardPosterPlaceholder><span>No Image Available</span></CardPosterPlaceholder>}
+        <CardDetails>
+            <CardTitle>{ title }</CardTitle>
+            <ReleaseDate>Release Date: { releaseDate }</ReleaseDate>
+        </CardDetails>
+    </CardWrapper>
+</Link>
+
+export default memo(Card);
