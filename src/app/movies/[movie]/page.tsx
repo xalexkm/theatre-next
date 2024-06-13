@@ -1,4 +1,4 @@
-import MovieDetails from "../../../components/movie-details";
+import MovieDetails from "../../../components/movieDetails";
 
 
 async function getData(movieId: string) {
