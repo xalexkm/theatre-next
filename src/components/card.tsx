@@ -1,5 +1,5 @@
 "use client"
-import styled from "styled-components";
+import styled, {CSSProperties} from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import {memo} from "react";
@@ -50,7 +50,7 @@ const imageStyle = {
     height: "100%",
     objectPosition: "center",
     objectFit: "cover"
-};
+} as CSSProperties;
 
 const CardTitle = styled.h2`
   overflow: hidden;

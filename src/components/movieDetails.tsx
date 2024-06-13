@@ -1,5 +1,5 @@
 "use client"
-import styled from "styled-components";
+import styled, {CSSProperties} from "styled-components";
 import Image from "next/image";
 import {memo} from "react";
 
@@ -16,9 +16,10 @@ const MovieDetailsWrapper = styled.section`
 
 const imageStyle = {
     height: "100%",
+    width: "100%",
     objectPosition: "center",
     objectFit: "cover"
-};
+} as CSSProperties;
 
 const MovieDetailsDescription = styled.section`
     height: 100%;
