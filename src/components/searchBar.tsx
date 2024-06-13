@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import MoviesList from "./moviesList";
 import {searchMoviesByTitle} from "../lib/api";
 import useThrottle from "../app/hooks/useThrottle";
+import {device} from "../styles/breakpoints";
 
 const SearchBarInput = styled.input`
   display: block;
@@ -12,8 +13,13 @@ const SearchBarInput = styled.input`
   margin: 0 auto;
   border-radius: var(--border-radius-md);
   background-color: var(--secondary-color);
+  box-sizing: content-box;
+  font-size: var(--font-size-lg);
   &::placeholder {
     color: var(--text-color);
+  }
+  @media ${device.md} {
+    width: 300px;
   }
 `;
 
