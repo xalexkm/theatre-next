@@ -34,7 +34,7 @@ const imageStyle = {
 export default function Card({ title, releaseDate, posterSrc}) {
     return <CardWrapper>
         <CardPoster>
-            <Image priority style={imageStyle} height={300} width={100} src={posterSrc} alt={`Alt`} />
+            <Image priority style={imageStyle} height={300} width={100} src={posterSrc} alt={`${title} poster`} />
         </CardPoster>
         <CardDetails>
             <h2>{ title }</h2>

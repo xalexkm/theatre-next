@@ -1,10 +1,11 @@
+import MovieDetails from "../../../components/movie-details";
 
 
 async function getData(movieId: string) {
-    const res = await fetch(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${movieId}`)
+    const res = await fetch(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${movieId}`);
 
     if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        throw new Error('Failed to fetch data');
     }
 
     const rawData = await res.json();
@@ -16,13 +17,13 @@ async function getData(movieId: string) {
         year: rawData.Year,
         id: rawData.imdbID,
         type: rawData.Type,
-        poster: rawData.Poster,
+        posterSrc: rawData.Poster,
         rated: rawData.Rated,
         timeLength: rawData.Runtime,
         genre: rawData.Genre,
         language: rawData.Language,
         actors: rawData.Actors,
-    }
+    };
 
     return sanitisiedData
 }
@@ -34,5 +35,5 @@ export default async function Page({ params }) {
 
     console.log(movieDetails);
 
-    return <></>
+    return <MovieDetails movieDetails={movieDetails}></MovieDetails>
 }
